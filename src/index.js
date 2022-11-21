@@ -7,8 +7,13 @@ const morgan = require('morgan');;
 const app = express();
 // port này là cổng httls địa chỉ để hiện trình duyệt.
 const port = 3000
+
+
+
 // Method get dùng để get path `/` 
 app.use(morgan('combined'))
+// config static ( cấu hinh file tĩnh)
+app.use(express.static(path.join(__dirname,"public")))
 // templates engine ( mẫu động cơ)
 app.engine('.hbs', handlebars({
   extname:".hbs"
