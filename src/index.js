@@ -4,6 +4,7 @@
 const express = require('express');
 const {engine: handlebars} = require('express-handlebars');
 const morgan = require('morgan');
+const route = require('./routes')
 const app = express();
 // port này là cổng httls địa chỉ để hiện trình duyệt.
 const port = 3000;
@@ -21,23 +22,13 @@ app.engine('.hbs', handlebars({
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'resources/views'));
 
-app.get('/', (req, res) => {
-  res.render('home')
-});
+const db = require('./config/db');
 
-app.get('/news', (req, res) => {
-  res.render('news');
-});
+db.connect();
 
-app.get('/search', (req, res) => {
-  
-  res.render('search');
-});
 
-app.post('/search', (req, res) => {
-    console.log(req.body)
-  res.send('');
-});
+
+route(app)
 
 // listen => gửi lắng nghe và gửi yêu cầu và hiện 
 // giao diện web
