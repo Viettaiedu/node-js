@@ -1,17 +1,50 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">My blog</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-    </ul>
+<div
+  class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between navbar__wrapper"
+>
+  <div class="p-2 d-flex align-items-center">
+    <img
+      class="navbar__logo"
+      src="https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png"
+      alt=""
+    />
+    <a class="navbar-brand navbar__title" href="#">Học Lập Trình Để Đi Làm</a>
   </div>
-</nav>
+
+  <form class="p-2 form-inline my-2 my-lg-0 w-25">
+    <div class="d-flex w-100 justify-content-between align-items-center border border-dark form-inline__search">
+      <span class="form-inline__icon pl-3"><i
+          class="fa-solid fa-magnifying-glass"
+        ></i></span>
+      <input
+        class="form-control form-control__border mr-sm-2 w-100"
+        type="search"
+        placeholder="Tìm kiếm khóa học, bài viết, video, ..."
+        aria-label="Search"
+      />
+    </div>
+  </form>
+
+  <ul class="p-2 navbar-nav d-flex align-items-center">
+    <li class="nav-item active">
+      <a class="nav-link nav-link__course" href="#">
+        Khóa học của tôi
+
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <i class="fa-solid fa-bell"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link nav-link__user d-flex" href="#">
+        <img
+          class="rounded-circle w-100 h-100"
+          src="https://fullstack.edu.vn/static/media/fallback-avatar.155cdb2376c5d99ea151.jpg"
+          alt=""
+        />
+      </a>
+    </li>
+  </ul>
+
+</div>

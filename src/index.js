@@ -20,7 +20,7 @@ app.engine('.hbs', handlebars({
   extname:".hbs"
 }));
 app.set('view engine', '.hbs');
-app.set('views', path.join(__dirname, 'resources/views'));
+app.set('views', path.join(__dirname, 'resources','views'));
 
 const db = require('./config/db');
 
@@ -33,5 +33,5 @@ route(app)
 // listen => gửi lắng nghe và gửi yêu cầu và hiện 
 // giao diện web
 app.listen(port, () => {
-  console.log(`Example app listening on port localhost:${port}`)
+  console.log(`app listening on port localhost:${port}`)
 });
