@@ -5,6 +5,8 @@ const express = require('express');
 const {engine: handlebars} = require('express-handlebars');
 const morgan = require('morgan');
 const route = require('./routes')
+const moment = require('moment');
+const methodOverride = require('method-override')
 const app = express();
 // port này là cổng httls địa chỉ để hiện trình duyệt.
 const port = 3000;
@@ -16,8 +18,15 @@ app.use(morgan('combined'));
 // config static ( cấu hinh file tĩnh)
 app.use(express.static(path.join(__dirname,"public")));
 // templates engine ( mẫu động cơ)
+app.use(methodOverride('_method'));
 app.engine('.hbs', handlebars({
-  extname:".hbs"
+  extname:".hbs",
+  helpers: {
+    increase(a,b) {return (a + b)},
+    dateFormat(date, format, utc) {
+      return (utc === true) ? moment(date).utc().format(format) : moment(date).format(format);
+  }
+  }
 }));
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'resources','views'));

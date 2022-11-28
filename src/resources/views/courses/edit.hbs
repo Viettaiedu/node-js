@@ -1,10 +1,11 @@
 <div class="mt-4">
-  <form method="POST" action="/courses/store">
+  <form method="POST" action="/courses/{{course._id}}?_method=PUT">
     <div class="form-group">
       <label for="name">Nhập khóa học</label>
       <input
         type="text"
         class="form-control"
+        value="{{course.name}}"
         name="name"
         id="name"
         placeholder="Nhập tên khóa học"
@@ -15,6 +16,7 @@
       <input
         type="text"
         class="form-control"
+          value="{{course.description}}"
         id="description"
         name="description"
         placeholder="Nhập tên mô tả"
@@ -25,6 +27,7 @@
       <input
         type="text"
         class="form-control"
+             value="{{course.level}}"
         id="level"
         name="level"
         placeholder="Nhập level khóa học"
@@ -37,9 +40,10 @@
         class="form-control"
         id="video"
         name="video"
+        value="{{course.video}}"
         placeholder="Nhập video id"
       />
     </div>
-    <button type="submit" class="btn btn-primary">Thêm khóa học</button>
+    <button type="submit" class="btn btn-primary">Sửa khóa học</button>
   </form>
 </div>

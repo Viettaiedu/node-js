@@ -1,0 +1,25 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Tên khóa học</th>
+      <th scope="col">Mô tả khóa học</th>
+      <th scope="col">Thời gian đăng</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+      
+      {{#each courses}}
+    <tr>
+      <th scope="row">{{increase @index 1 }}</th>
+      <td>{{this.name}}</td>
+      <td>{{this.description}}</td>
+      <td>{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a" true}}</td>
+      <td> <a href="/courses/{{this._id}}/edit">Sửa</a></td>
+      <td> <a href="/courses/{{this._id}}">Xóa</a></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

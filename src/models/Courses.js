@@ -5,9 +5,10 @@ const Schema = mongoose.Schema;
 
 const Courses = new Schema({
     name: {type : String, require : true},
-    desciption: {type : String ,},
+    description: {type : String ,},
     image: {type:String},
     video: {type : String ,  require : true},
+    level: {type : String },
     slug: {type:String ,slug : "name" ,unique : true},
   } , {
     timestamps : true

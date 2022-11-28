@@ -2,12 +2,13 @@
   class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between navbar__wrapper"
 >
   <div class="p-2 d-flex align-items-center">
-    <img
+    <a href="/">
+      <img
       class="navbar__logo"
       src="https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png"
       alt=""
     />
-    <a class="navbar-brand navbar__title" href="#">Học Lập Trình Để Đi Làm</a>
+    <span class="navbar-brand navbar__title">Học Lập Trình Để Đi Làm</span></a>
   </div>
 
   <form class="p-2 form-inline my-2 my-lg-0 w-25">
@@ -25,26 +26,31 @@
   </form>
 
   <ul class="p-2 navbar-nav d-flex align-items-center">
-    <li class="nav-item active">
-      <a class="nav-link nav-link__course" href="#">
-        Khóa học của tôi
 
-      </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">
         <i class="fa-solid fa-bell"></i>
       </a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link nav-link__user d-flex" href="#">
-        <img
+   
+
+    <li class="nav-item dropdown">
+        <a class="nav-link  nav-link__user d-flex" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   <img
           class="rounded-circle w-100 h-100"
           src="https://fullstack.edu.vn/static/media/fallback-avatar.155cdb2376c5d99ea151.jpg"
           alt=""
         />
-      </a>
-    </li>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/courses/create">Đăng khóa học</a>
+           <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/me/stored/courses">Khóa học của tôi</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Đăng xuất</a>
+        </div>
+      </li>
   </ul>
 
 </div>
