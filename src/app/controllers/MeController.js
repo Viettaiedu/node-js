@@ -3,10 +3,13 @@ const { handleMongoseeToObject } = require("../../util/mongosee");
 
 class MeController {
     storedCourses(req,res,next) {
-        Courses.find({})
-            .then(courses => res.render('me/stored-courses', {
-                courses : handleMongoseeToObject(courses)
-            }))
+       
+
+        Promise.all([Courses.find({}),Courses.countDocumentsDeleted()])
+        .then(([courses,deletedCount]) => res.render('me/stored-courses', {
+            deletedCount,
+            courses: handleMongoseeToObject(courses),
+        }))
             .catch(next);
     }
 
