@@ -5093,7 +5093,7 @@ readers do not read off random characters that represent icons */
 .fa-car-burst::before {
   content: "\f5e1"; }
 
-.fa-car-crash::before {
+.fa-car-trash::before {
   content: "\f5e1"; }
 
 .fa-y::before {

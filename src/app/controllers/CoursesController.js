@@ -24,8 +24,8 @@ class CoursesController {
     formDate.image = `https://img.youtube.com/vi/${req.body.video}/sddefault.jpg`;
     const course = new Courses(formDate);
     course
-      .save()
-      .then(() => res.redirect("/"))
+      .save({deleted : false})
+      .then(() => res.redirect("/me/stored/courses"))
       .catch((error) => {});
   }
   // [GET] /courses/:id/edit
@@ -45,6 +45,24 @@ class CoursesController {
     }
     Courses.findOneAndUpdate(req.params.id ,req.body, option )
     .then(() => res.redirect('/me/stored/courses'))
+    .catch(next)
+  }
+  // [DELETE] /courses/:id
+  destroy(req,res,next) {
+    Courses.delete({_id:req.params.id})
+    .then(() => res.redirect('back'))
+    .catch(next)
+  }
+  // [DELETE] /courses/:id/force
+  forceDelete(req,res,next) {
+      Courses.deleteOne({ _id : req.params.id})
+        .then( () => res.redirect('/me/trash/courses')) 
+        .catch(next)
+  }
+    // [PATCH] /courses/:id/restore
+  restore(req,res,next) {
+    Courses.restore({_id : req.params.id})
+    .then(() => res.redirect('back'))
     .catch(next)
   }
 }

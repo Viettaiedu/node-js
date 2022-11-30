@@ -4500,7 +4500,7 @@ car-battery:
 car-burst:
   aliases:
     names:
-      - car-crash
+      - car-trash
     unicodes:
       secondary:
         - 10f5e1

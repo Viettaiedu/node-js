@@ -1,3 +1,12 @@
+    {{#if courses}}
+
+    <div class="mb-4 mt-4">
+      <a href="/me/trash/courses">
+      <i class="fa-solid fa-trash"></i>
+      Thùng rác</a>
+     </div>
+  {{/if}}
+
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -9,17 +18,107 @@
       <th scope="col"></th>
     </tr>
   </thead>
-  <tbody>
-      
-      {{#each courses}}
-    <tr>
-      <th scope="row">{{increase @index 1 }}</th>
-      <td>{{this.name}}</td>
-      <td>{{this.description}}</td>
-      <td>{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a" true}}</td>
-      <td> <a href="/courses/{{this._id}}/edit">Sửa</a></td>
-      <td> <a href="/courses/{{this._id}}">Xóa</a></td>
-    </tr>
+  <tr>
+
+    {{#each courses}}
+      <tr>
+        <th scope="row">{{increase @index 1}}</th>
+        <td>{{this.name}}</td>
+        <td>{{this.description}}</td>
+        <td>{{dateFormat
+            this.createdAt
+            "dddd, MMMM Do YYYY, h:mm:ss a"
+            true
+          }}</td>
+        <td> <a href="/courses/{{this._id}}/edit">Sửa</a></td>
+        <td>
+
+          <a
+            href=""
+            data-id="{{this._id}}"
+            data-toggle="modal"
+            data-target="#delete-course"
+          >
+            Xóa
+          </a>
+        </td>
+
+         {{else}}
+              <td colspan="4" class="text-center">
+            <span >Không có khóa học nào ?</span>
+          <a
+            href="/courses/create"
+          > 
+           Đăng khóa học
+          </a>
+        </td>
+
+      </tr>
+     
+   
     {{/each}}
   </tbody>
 </table>
+
+{{! Form delete course }}
+<form name="delete-course-by-id" method="POST"></form>
+
+{{! Model delete }}
+<div
+  class="modal fade"
+  id="delete-course"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Xóa khóa học ?</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Bạn muốn xóa khóa học ?
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+        >Hủy</button>
+        <button
+          type="button"
+     
+          class="btn btn-primary"
+          id="btn-delete"
+        >Xóa</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var btnDelete = document.querySelector('#btn-delete');
+      var formDelete = document.forms['delete-course-by-id'];
+      var courseId ;
+        $('#delete-course').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            courseId = button.data('id');
+         
+          })
+       btnDelete.addEventListener('click' , function () {
+           formDelete.action = `/courses/${courseId}?_method=DELETE`;
+            formDelete.submit();
+       })
+    })
+</script>
+

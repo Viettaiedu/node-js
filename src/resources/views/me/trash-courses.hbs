@@ -1,0 +1,93 @@
+   
+<table class="table">
+ <div class="mb-4 mt-4">
+      <a href="/me/stored/courses">Danh sách khóa học</a>
+  </div>
+
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Tên khóa học</th>
+      <th scope="col">Mô tả khóa học</th>
+      <th scope="col">Thời gian đăng</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tr>
+
+    {{#each courses}}
+      <tr>
+        <th scope="row">{{increase @index 1}}</th>
+        <td>{{this.name}}</td>
+        <td>{{this.description}}</td>
+        <td>{{dateFormat
+            this.createdAt
+            "dddd, MMMM Do YYYY, h:mm:ss a"
+            true
+          }}</td>
+        <td> <a data-id="{{this._id}}" class="btn-restore" href="">Khôi phục</a></td>
+        <td>
+
+          <a
+            href=""
+            data-id="{{this._id}}"
+            data-toggle="modal"
+            class="btn-force"
+            data-target="#delete-course"
+          >
+            Xóa vĩnh viễn
+          </a>
+        </td>
+
+         {{else}}
+              <td colspan="4" class="text-center">
+            <span >Không có khóa học nào trong thùng rác.</span>
+          <a
+            href="/me/stored/courses"
+          > 
+            Danh sách khóc học
+          </a>
+        </td>
+
+      </tr>
+     
+   
+    {{/each}}
+  </tbody>
+</table>
+
+{{! Form delete course }}
+<form name="delete-course-by-id" method="POST"></form>
+<form name="restore-id" method="POST"></form>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var btnForce = document.querySelector('.btn-force');
+      var btnRestore = document.querySelector('.btn-restore');
+
+      var formDelete = document.forms['delete-course-by-id'];
+      var formReStoreId = document.forms['restore-id'];
+       
+     
+      // Show ra modal
+       
+         // Xóa khóa học ra khỏi database
+          btnForce.addEventListener('click', function () {
+             let idCourse =  $(this).data('id');
+              formDelete.action = `/courses/${idCourse}/force?_method=DELETE`;
+              formDelete.submit();
+          })
+       
+       // Restore course
+        btnRestore.addEventListener('click', function (e)  {
+          e.preventDefault();
+            let idCourse =  $(this).data('id');
+             formReStoreId.action = `/courses/${idCourse}/restore?_method=PATCH`;
+              formReStoreId.submit();
+        })
+      
+    })
+</script>
+

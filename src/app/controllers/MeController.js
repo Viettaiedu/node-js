@@ -9,6 +9,14 @@ class MeController {
             }))
             .catch(next);
     }
+
+    trashCourses(req,res,next) {
+        Courses.findDeleted({})
+            .then(courses => res.render('me/trash-courses', {
+                courses : handleMongoseeToObject(courses)
+            }))
+            .catch(next);
+    }
 }
 
 module.exports = new MeController();
